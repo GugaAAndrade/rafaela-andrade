@@ -77,11 +77,11 @@ const projectCategories = [
         layout: "layout-5",
         images: [
           {
-            src: "/images/projeto-Alma/Alma-2.jpeg?height=500&width=900",
+            src: "/images/projeto-alma/alma-2.jpeg?height=500&width=900",
             alt: "Vista da sala de estar integrada",
           },
           {
-            src: "/images/projeto-Alma/Alma-1.jpeg?height=500&width=900",
+            src: "/images/projeto-alma/alma-1.jpeg?height=500&width=900",
             alt: "Detalhe da iluminação do apartamento",
           },
 
@@ -95,11 +95,11 @@ const projectCategories = [
         layout: "layout-5",
         images: [
           {
-            src: "/images/projeto-Auna/Auna-1.jpeg?height=500&width=900",
+            src: "/images/projeto-auna/auna-1.jpeg?height=500&width=900",
             alt: "Vista da sala de estar integrada",
           },
           {
-            src: "/images/projeto-Auna/Auna-2.jpeg?height=500&width=900",
+            src: "/images/projeto-auna/auna-2.jpeg?height=500&width=900",
             alt: "Detalhe da iluminação do apartamento",
           },
 
