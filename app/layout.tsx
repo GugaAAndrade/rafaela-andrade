@@ -1,10 +1,11 @@
-import type { Metadata } from "next"
-import { Alice, Inter } from "next/font/google"
-import type React from "react"
-import "./globals.css"
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import type { Metadata } from "next";
+import { Alice, Inter } from "next/font/google";
+import type React from "react";
+import "./globals.css";
 
-const alice = Alice({ subsets: ["latin"], weight: "400" }) // ou "700" se quiser mais forte
-
+const alice = Alice({ subsets: ["latin"], weight: "400" })
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -21,10 +22,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className="scroll-smooth">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+        <Analytics />
+        <SpeedInsights />
+        </body>
     </html>
   )
 }
 
 
-import './globals.css'
+import './globals.css';
+

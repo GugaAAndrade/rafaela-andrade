@@ -2,14 +2,12 @@ import FadeIn from "@/components/animations/fade-in"
 import StaggerChildren from "@/components/animations/stagger-children"
 import StaggerItem from "@/components/animations/stagger-item"
 import ProjectCarousel from "@/components/project-carousel"
-import { ChevronRight, Instagram, Mail, Phone } from "lucide-react"
+import { ChevronRight, Instagram, Mail, MessageCircle } from "lucide-react"
+import { Alice } from "next/font/google"
 import Image from "next/image"
 import Link from "next/link"
 
-import { Alice } from "next/font/google"
-
 const alice = Alice({ subsets: ["latin"], weight: "400" })
-
 
 
 export default function Home() {
@@ -33,7 +31,7 @@ export default function Home() {
               <Link href="#sobre" className="text-sm text-black/70 hover:text-black transition-colors">
                 Sobre
               </Link>
-              <Link href="#projetos" className="text-sm text-black/70 hover:text-black transition-colors">
+              <Link href="/projetos" className="text-sm text-black/70 hover:text-black transition-colors">
                 Projetos
               </Link>
               <Link href="#servicos" className="text-sm text-black/70 hover:text-black transition-colors">
@@ -200,22 +198,21 @@ export default function Home() {
                 <h3 className="text-xl font-light mb-8 border-b border-black/10 pb-4">Informações</h3>
 
                 <div className="space-y-6">
-                  <Link
-                    href="mailto:arquitetarafaelaandradd@gmail.com"
+                  <div
                     className="flex items-center gap-4 text-black/80 hover:text-black transition-colors group"
                   >
                     <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:shadow transition-all">
                       <Mail className="w-5 h-5" />
                     </div>
                     <span>arquitetarafaelaandradd@gmail.com</span>
-                  </Link>
+                  </div>
 
                   <Link
-                    href="tel:+5579999621864"
+                    href="https://contate.me/arqrafaelaandrade"
                     className="flex items-center gap-4 text-black/80 hover:text-black transition-colors group"
                   >
                     <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:shadow transition-all">
-                      <Phone className="w-5 h-5" />
+                      <MessageCircle className="w-5 h-5" />
                     </div>
                     <span>(79) 99962-1864</span>
                   </Link>
