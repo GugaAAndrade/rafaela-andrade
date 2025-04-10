@@ -12,7 +12,10 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Rafaela Andrade | Arquitetura de Interiores",
   description: "Portfólio de Rafaela Andrade, arquiteta especializada em design de interiores.",
-    generator: 'v0.dev'
+  generator: 'v0.dev',
+  icons: {
+    icon: '/favicon.jpeg',
+  }
 }
 
 export default function RootLayout({

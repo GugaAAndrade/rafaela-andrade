@@ -341,6 +341,7 @@ const ProjectGallery = ({ project }) => {
   }
 
 
+
   // Layout padrão caso nenhum dos layouts específicos seja aplicado
   return (
     <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
