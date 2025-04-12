@@ -1,7 +1,12 @@
+'use client'
+
 import FadeIn from "@/components/animations/fade-in"
+import ImageModal from "@/components/image-modal"
 import { ChevronLeft } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { useEffect, useState } from "react"
+
 
 // Dados dos projetos
 const projectCategories = [
@@ -146,229 +151,109 @@ const projectCategories = [
   },
 ]
 
-// Componente para renderizar diferentes layouts de galeria
+// Componente de galeria com zoom
 const ProjectGallery = ({ project }) => {
+  if (!project) return null
   const { layout, images } = project
+  const [zoomedImage, setZoomedImage] = useState(null)
 
-  // Layout 1: Primeira imagem grande à esquerda, duas imagens empilhadas à direita
-  if (layout === "layout-1") {
-    return (
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="md:col-span-2 relative h-[500px] group overflow-hidden">
-          <Image
-            src={images[0].src || "/placeholder.svg"}
-            alt={images[0].alt}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-        </div>
-        <div className="grid grid-cols-1 gap-4">
-          <div className="relative h-[240px] group overflow-hidden">
-            <Image
-              src={images[1].src || "/placeholder.svg"}
-              alt={images[1].alt}
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-          </div>
-          <div className="relative h-[240px] group overflow-hidden">
-            <Image
-              src={images[2].src || "/placeholder.svg"}
-              alt={images[2].alt}
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-          </div>
-        </div>
-        {images.length > 3 && (
-          <div className="md:col-span-3 relative h-[300px] group overflow-hidden">
-            <Image
-              src={images[3].src || "/placeholder.svg"}
-              alt={images[3].alt}
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-          </div>
-        )}
-      </div>
-    )
-  }
+  const renderImage = (image, index, height = 300, extraClasses = "") => (
+    <div
+      key={index}
+      className={`relative h-[${height}px] group overflow-hidden cursor-zoom-in ${extraClasses}`}
+      onClick={() => setZoomedImage(image)}
+    >
+      <Image
+        src={image.src || "/placeholder.svg"}
+        alt={image.alt}
+        fill
+        className="object-cover transition-transform duration-700 group-hover:scale-105"
+      />
+    </div>)
 
-  // Layout 2: Grid irregular com imagens de diferentes tamanhos
-  if (layout === "layout-2") {
-    return (
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-        <div className="md:col-span-8 relative h-[400px] group overflow-hidden">
-          <Image
-            src={images[0].src || "/placeholder.svg"}
-            alt={images[0].alt}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-        </div>
-        <div className="md:col-span-4 relative h-[400px] group overflow-hidden">
-          <Image
-            src={images[1].src || "/placeholder.svg"}
-            alt={images[1].alt}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-        </div>
-        <div className="md:col-span-4 relative h-[350px] group overflow-hidden">
-          <Image
-            src={images[2].src || "/placeholder.svg"}
-            alt={images[2].alt}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-        </div>
-        <div className="md:col-span-4 relative h-[350px] group overflow-hidden">
-          <Image
-            src={images[3].src || "/placeholder.svg"}
-            alt={images[3].alt}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-        </div>
-        <div className="md:col-span-4 relative h-[350px] group overflow-hidden">
-          <Image
-            src={images[4].src || "/placeholder.svg"}
-            alt={images[4].alt}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-        </div>
-      </div>
-    )
-  }
+    useEffect(() => {
+      if (zoomedImage) {
+        // Bloqueia o scroll
+        document.body.style.overflow = "hidden"
 
-  // Layout 3: Imagem grande no topo, três imagens abaixo em tamanhos diferentes
-  if (layout === "layout-3") {
-    return (
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-        <div className="md:col-span-6 relative h-[450px] group overflow-hidden">
-          <Image
-            src={images[0].src || "/placeholder.svg"}
-            alt={images[0].alt}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-        </div>
-        <div className="md:col-span-3 relative h-[300px] group overflow-hidden">
-          <Image
-            src={images[1].src || "/placeholder.svg"}
-            alt={images[1].alt}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-        </div>
-        <div className="md:col-span-2 relative h-[300px] group overflow-hidden">
-          <Image
-            src={images[2].src || "/placeholder.svg"}
-            alt={images[2].alt}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-        </div>
-        <div className="md:col-span-1 relative h-[300px] group overflow-hidden">
-          <Image
-            src={images[3].src || "/placeholder.svg"}
-            alt={images[3].alt}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-        </div>
-      </div>
-    )
-  }
+        // Função que escuta o ESC
+        const handleKeyDown = (e) => {
+          if (e.key === "Escape") setZoomedImage(null)
+        }
 
-  // Layout 4: Imagens em formato de L
-  if (layout === "layout-4") {
-    return (
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="relative h-[656px] group overflow-hidden">
-          <Image
-            src={images[0].src || "/placeholder.svg"}
-            alt={images[0].alt}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-        </div>
-        <div className="grid grid-cols-1 gap-4">
-          <div className="relative h-[290px] group overflow-hidden">
-            <Image
-              src={images[1].src || "/placeholder.svg"}
-              alt={images[1].alt}
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-          </div>
-          <div className="relative h-[350px] group overflow-hidden">
-            <Image
-              src={images[2].src || "/placeholder.svg"}
-              alt={images[2].alt}
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-          </div>
-        </div>
-      </div>
-    )
-  }
+        window.addEventListener("keydown", handleKeyDown)
 
-  // Layout 4: Imagens em formato de L mas irregular
-  if (layout === "layout-5") {
-    return (
-      <div className="grid md:grid-cols-2 gap-4">
-        <div className="md:col-span-1 relative h-[500px] group overflow-hidden">
-          <Image
-            src={images[0].src || "/placeholder.svg"}
-            alt={images[0].alt}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-        </div>
-        <div className="md:col-span-1 relative h-[500px] group overflow-hidden">
-          <Image
-            src={images[1].src || "/placeholder.svg"}
-            alt={images[1].alt}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-        </div>
-      </div>
-    )
-  }
+        return () => {
+          // Remove listener e volta o scroll ao normal
+          window.removeEventListener("keydown", handleKeyDown)
+          document.body.style.overflow = ""
+        }
+      }
+    }, [zoomedImage])
 
 
-
-  // Layout padrão caso nenhum dos layouts específicos seja aplicado
   return (
-    <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
-      {images.map((image, index) => (
-        <div
-          key={index}
-          className={`relative h-[300px] md:h-[400px] group overflow-hidden ${
-            index === 0 && images.length > 1 ? "md:col-span-2 md:h-[600px]" : ""
-          }`}
-        >
-          <Image
-            src={image.src || "/placeholder.svg"}
-            alt={image.alt}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-          />
+    <>
+      {zoomedImage && <ImageModal image={zoomedImage} onClose={() => setZoomedImage(null)} />}
+
+
+      {/* Layouts */}
+      {layout === "layout-1" && (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="md:col-span-2">{renderImage(images[0], 0, 500)}</div>
+          <div className="grid grid-cols-1 gap-4">
+            {renderImage(images[1], 1, 240)}
+            {renderImage(images[2], 2, 240)}
+          </div>
         </div>
-      ))}
-    </div>
+      )}
+
+      {layout === "layout-2" && (
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+          {renderImage(images[0], 0, 400, "md:col-span-8")}
+          {renderImage(images[1], 1, 400, "md:col-span-4")}
+          {renderImage(images[2], 2, 350, "md:col-span-4")}
+          {renderImage(images[3], 3, 350, "md:col-span-4")}
+          {renderImage(images[4], 4, 350, "md:col-span-4")}
+        </div>
+      )}
+
+      {layout === "layout-4" && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {renderImage(images[0], 0, 656)}
+          <div className="grid grid-cols-1 gap-4">
+            {renderImage(images[1], 1, 290)}
+            {renderImage(images[2], 2, 350)}
+          </div>
+        </div>
+      )}
+
+      {layout === "layout-5" && (
+        <div className="grid md:grid-cols-2 gap-4">
+          {renderImage(images[0], 0, 500)}
+          {renderImage(images[1], 1, 500)}
+        </div>
+      )}
+
+      {!["layout-1", "layout-2", "layout-4", "layout-5"].includes(layout) && (
+        <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
+          {images.map((img, index) => renderImage(img, index, index === 0 && images.length > 1 ? 600 : 400))}
+        </div>
+      )}
+    </>
   )
+
+  
+
+
 }
 
-export default function ProjectsPage() {
+// Página principal
+const ProjectsPage = () => {
   return (
-    <main className="min-h-screen bg-white pt-20">
-      {/* Header */}
-      <header className="py-12 px-4 md:px-8 bg-[#f0f0f0]">
+    <main className="min-h-screen bg-white pt-20 ">
+
+    <header className="py-12 px-4 md:px-8 bg-[#f0f0f0]">
         <div className="max-w-7xl mx-auto">
           <FadeIn>
             <Link href="/" className="inline-flex items-center text-black/70 hover:text-black mb-6 group">
@@ -388,41 +273,39 @@ export default function ProjectsPage() {
         </div>
       </header>
 
-      {/* Project Categories */}
       <div className="py-16 px-4 md:px-8">
-        <div className="max-w-7xl mx-auto">
-          {projectCategories.map((category, categoryIndex) => (
-            <section key={category.id} className="mb-20">
-              <FadeIn delay={0.1 * categoryIndex}>
-                <h2 className="text-3xl font-light mb-12 text-black">{category.title}</h2>
-              </FadeIn>
+      {projectCategories.map((category, categoryIndex) => (
+        <FadeIn delay={0.1 * categoryIndex} key={category.id}>
+          <section className="mb-20 max-w-7xl mx-auto">
+            <h2 className="text-3xl font-light mb-12 text-black">{category.title}</h2>
 
-              <div className="space-y-24">
-                {category.projects.map((project, projectIndex) => (
-                  <div key={project.id} className="grid gap-8">
-                    <FadeIn delay={0.2 + 0.1 * projectIndex}>
-                      <div className="max-w-3xl">
-                        <h3 className="text-2xl font-light mb-4">{project.title}</h3>
-                        <p className="text-black/70 mb-8">{project.description}</p>
-                      </div>
-                    </FadeIn>
+            <div className="space-y-24">
+              {category.projects.map((project, projectIndex) => (
+                <FadeIn key={project.id} delay={0.2 + 0.1 * projectIndex}>
+                  <div className="grid gap-8">
+                    <div className="max-w-3xl">
+                      <h3 className="text-2xl font-light mb-4">{project.title}</h3>
+                      <p className="text-black/70 mb-8">{project.description}</p>
+                    </div>
 
-                    {/* Galeria de imagens com layout dinâmico */}
                     <FadeIn delay={0.3 + 0.1 * projectIndex}>
                       <ProjectGallery project={project} />
                     </FadeIn>
                   </div>
-                ))}
-              </div>
-            </section>
-          ))}
-        </div>
+                </FadeIn>
+              ))}
+            </div>
+          </section>
+        </FadeIn>
+      ))}
+
       </div>
 
-      {/* Footer */}
-      <footer className="py-8 px-4 text-center text-black/70 border-t border-black/10">
-        <p>© {new Date().getFullYear()} Rafaela Andrade - Arquitetura de Interiores. Todos os direitos reservados.</p>
+      <footer className="py-12 text-center text-black/60 border-t border-black/10">
+        <p>© {new Date().getFullYear()} Rafaela Andrade - Arquitetura de Interiores.</p>
       </footer>
     </main>
   )
 }
+
+export default ProjectsPage
