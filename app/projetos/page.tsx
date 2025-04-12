@@ -209,21 +209,37 @@ const ProjectGallery = ({ project }) => {
       )}
 
       {layout === "layout-2" && (
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-          {renderImage(images[0], 0, 400, "md:col-span-8")}
-          {renderImage(images[1], 1, 400, "md:col-span-4")}
-          {renderImage(images[2], 2, 350, "md:col-span-4")}
-          {renderImage(images[3], 3, 350, "md:col-span-4")}
-          {renderImage(images[4], 4, 350, "md:col-span-4")}
-        </div>
+        <>
+          {/* Primeira linha com 2 colunas 8 + 4 */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+            {renderImage(images[0], 0, 400, "md:col-span-8")}
+            {renderImage(images[1], 1, 400, "md:col-span-4")}
+          </div>
+
+          {/* Segunda linha com 3 imagens iguais */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+            {renderImage(images[2], 2, 350)}
+            {renderImage(images[3], 3, 350)}
+            {renderImage(images[4], 4, 350)}
+          </div>
+        </>
       )}
 
       {layout === "layout-4" && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {renderImage(images[0], 0, 656)}
-          <div className="grid grid-cols-1 gap-4">
-            {renderImage(images[1], 1, 290)}
-            {renderImage(images[2], 2, 350)}
+        <div className="grid md:grid-cols-2 gap-4">
+          {/* Imagem maior à esquerda */}
+          <div className="relative h-[656px]">
+            {renderImage(images[0], 0, 656)}
+          </div>
+
+          {/* Duas imagens empilhadas à direita com altura proporcional */}
+          <div className="flex flex-col gap-4">
+            <div className="relative h-[290px]">
+              {renderImage(images[1], 1, 290)}
+            </div>
+            <div className="relative h-[350px]">
+              {renderImage(images[2], 2, 350)}
+            </div>
           </div>
         </div>
       )}
