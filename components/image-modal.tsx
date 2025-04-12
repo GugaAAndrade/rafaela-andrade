@@ -8,20 +8,33 @@ import ReactDOM from "react-dom"
 export default function ImageModal({ image, onClose }) {
   // ESC e scroll lock
   useEffect(() => {
+    const scrollY = window.scrollY
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose()
     }
   
-    // Adiciona scroll lock
-    document.body.classList.add("scroll-lock")
+    // Travar scroll preservando a posição
+    document.body.style.position = "fixed"
+    document.body.style.top = `-${scrollY}px`
+    document.body.style.width = "100%"
+    document.body.style.overflow = "hidden"
+  
     window.addEventListener("keydown", handleEsc)
   
     return () => {
-      // Remove scroll lock e o listener
-      document.body.classList.remove("scroll-lock")
+      // Restaurar o scroll e limpar estilos
+      document.body.style.position = ""
+      document.body.style.top = ""
+      document.body.style.overflow = ""
+      document.body.style.width = ""
+  
       window.removeEventListener("keydown", handleEsc)
+  
+      // Voltar pro scroll original
+      window.scrollTo(0, scrollY)
     }
   }, [onClose])
+  
   // Evita renderizar em SSR
   if (typeof window === "undefined") return null
 
