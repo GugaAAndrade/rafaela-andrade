@@ -92,3 +92,12 @@ button {
   backface-visibility: hidden;
   transform: translateZ(0);
 }
+
+/* Impede scroll na tela inteira, inclusive mobile */
+.scroll-lock {
+  overflow: hidden !important;
+  height: 100vh !important;
+  touch-action: none;
+  position: fixed;
+  width: 100%;
+}
