@@ -1,6 +1,5 @@
 'use client'
 
-import FadeIn from "@/components/animations/fade-in"
 import ImageModal from "@/components/image-modal"
 import { ChevronLeft } from "lucide-react"
 import Image from "next/image"
@@ -271,48 +270,35 @@ const ProjectsPage = () => {
 
     <header className="py-12 px-4 md:px-8 bg-[#f0f0f0]">
         <div className="max-w-7xl mx-auto">
-          <FadeIn>
             <Link href="/" className="inline-flex items-center text-black/70 hover:text-black mb-6 group">
               <ChevronLeft className="w-4 h-4 mr-1 transition-transform duration-300 group-hover:-translate-x-1" />
               Voltar para a página inicial
             </Link>
-          </FadeIn>
-          <FadeIn delay={0.2}>
             <h1 className="text-4xl md:text-5xl font-light mb-4">Projetos</h1>
-          </FadeIn>
-          <FadeIn delay={0.3}>
             <p className="text-black/70 text-lg max-w-2xl">
               Conheça alguns dos projetos desenvolvidos, cada um com sua própria identidade e soluções personalizadas
               para atender às necessidades específicas de cada cliente.
             </p>
-          </FadeIn>
         </div>
       </header>
 
       <div className="py-16 px-4 md:px-8">
       {projectCategories.map((category, categoryIndex) => (
-        <FadeIn delay={0.1 * categoryIndex} key={category.id}>
-          <section className="mb-20 max-w-7xl mx-auto">
+          <section className="mb-20 max-w-7xl mx-auto" key={category.id}>
             <h2 className="text-3xl font-light mb-12 text-black">{category.title}</h2>
-
             <div className="space-y-24">
               {category.projects.map((project, projectIndex) => (
-                <FadeIn key={project.id} delay={0.2 + 0.1 * projectIndex}>
-                  <div className="grid gap-8">
+                  <div className="grid gap-8" key={project.id}>
                     <div className="max-w-3xl">
                       <h3 className="text-2xl font-light mb-4">{project.title}</h3>
                       <p className="text-black/70 mb-8">{project.description}</p>
                     </div>
 
-                    <FadeIn delay={0.3 + 0.1 * projectIndex}>
                       <ProjectGallery project={project} />
-                    </FadeIn>
                   </div>
-                </FadeIn>
               ))}
             </div>
           </section>
-        </FadeIn>
       ))}
 
       </div>
