@@ -246,7 +246,7 @@ export default function Home() {
             >
               {/* Proteção opcional contra bots */}
               <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_next" value="http://localhost:3000/" />
+              <input type="hidden" name="_next" value="https://www.arqrafaelaandrade.com/" />
               
               <div className="space-y-1">
                 <label htmlFor="name" className="text-sm text-black/70 block">
