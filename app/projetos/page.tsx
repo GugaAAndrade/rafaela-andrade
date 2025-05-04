@@ -118,23 +118,23 @@ const projectCategories = [
         images: [
 
           {
-            src: "/images/projeto-viva/viva-1.png?height=500&width=900",
+            src: "/images/projeto-viva/viva-1.jpeg?height=500&width=900",
             alt: "Área de trabalho colaborativo",
           },
           {
-            src: "/images/projeto-viva/viva-2.png?height=500&width=900",
+            src: "/images/projeto-viva/viva-2.jpeg?height=500&width=900",
             alt: "Sala de reuniões",
           },
           {
-            src: "/images/projeto-viva/viva-3.png?height=600&width=400",
+            src: "/images/projeto-viva/viva-3.jpeg?height=600&width=400",
             alt: "Detalhe do mobiliário",
           },
           {
-            src: "/images/projeto-viva/viva-4.png?height=600&width=400",
+            src: "/images/projeto-viva/viva-4.jpeg?height=600&width=400",
             alt: "Detalhe do mobiliário",
           },
           {
-            src: "/images/projeto-viva/viva-5.png?height=600&width=400",
+            src: "/images/projeto-viva/viva-5.jpeg?height=600&width=400",
             alt: "Detalhe do mobiliário",
           },
         ],
