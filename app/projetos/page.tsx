@@ -109,6 +109,36 @@ const projectCategories = [
 
         ],
       },
+      {
+        id: "res-6",
+        title: "Projeto Vivá",
+        description:
+          "A sala VIVÁ nasce como uma expressão contemporânea do viver bem. Mais do que um ambiente, ela é um convite ao acolhimento, um espaço onde o design encontra a essência do lar.",
+        layout: "layout-2",
+        images: [
+
+          {
+            src: "/images/projeto-viva/viva-1.png?height=500&width=900",
+            alt: "Área de trabalho colaborativo",
+          },
+          {
+            src: "/images/projeto-viva/viva-2.png?height=500&width=900",
+            alt: "Sala de reuniões",
+          },
+          {
+            src: "/images/projeto-viva/viva-3.png?height=600&width=400",
+            alt: "Detalhe do mobiliário",
+          },
+          {
+            src: "/images/projeto-viva/viva-4.png?height=600&width=400",
+            alt: "Detalhe do mobiliário",
+          },
+          {
+            src: "/images/projeto-viva/viva-5.png?height=600&width=400",
+            alt: "Detalhe do mobiliário",
+          },
+        ],
+      },
     ],
   },
   {
