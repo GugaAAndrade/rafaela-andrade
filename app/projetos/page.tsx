@@ -113,7 +113,7 @@ const projectCategories = [
         id: "res-6",
         title: "Projeto Vivá",
         description:
-          "A sala VIVÁ nasce como uma expressão contemporânea do viver bem. Mais do que um ambiente, ela é um convite ao acolhimento, um espaço onde o design encontra a essência do lar.",
+          "A sala VIVÁ nasce como uma expressão contemporânea do viver bem. Mais do que um ambiente, ela é um convite ao acolhimento, um espaço onde o design encontra a essência do lar. O projeto equilibra linhas limpas, materiais naturais e uma paleta suave, criando uma atmosfera que transmite calma e pertencimento. Mobiliários confortáveis, texturas que abraçam e uma iluminação pensada para destacar cada detalhe fazem da SALA VIVÁ um refúgio urbano que valoriza o estar junto, o descanso e a conexão com o presente.",
         layout: "layout-2",
         images: [
 
