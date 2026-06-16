@@ -1,323 +1,134 @@
-import FadeIn from "@/components/animations/fade-in"
-import StaggerChildren from "@/components/animations/stagger-children"
-import StaggerItem from "@/components/animations/stagger-item"
-import ProjectCarousel from "@/components/project-carousel"
-import { ChevronRight, Instagram, Mail, MessageCircle } from "lucide-react"
-import { Alice } from "next/font/google"
-import Image from "next/image"
 import Link from "next/link"
+import { ArrowRight, DraftingCompass, Layers3, Ruler } from "lucide-react"
+import { Footer } from "@/components/footer"
+import { HomeHero } from "@/components/home-hero"
+import { ProjectCard } from "@/components/project-card"
+import { SiteHeader } from "@/components/site-header"
+import { listFeedbacks, listProjects } from "@/lib/data"
+import {
+  buttonPrimaryClass,
+  eyebrowClass,
+  pageMainClass,
+  sectionClass,
+  shellClass,
+  textLinkClass,
+  textMutedClass
+} from "@/lib/ui"
 
-const alice = Alice({ subsets: ["latin"], weight: "400" })
+export default async function HomePage() {
+  const [projects, feedbacks] = await Promise.all([listProjects(), listFeedbacks()])
+  const featured = projects.filter((project) => project.featured).slice(0, 4)
+  const heroProjects = featured.length
+    ? [...featured, ...projects.filter((project) => !featured.some((item) => item.id === project.id))]
+    : projects
+  const featuredClasses = [
+    "lg:col-span-4",
+    "lg:col-span-2",
+    "lg:col-span-3",
+    "lg:col-span-3"
+  ]
 
-
-export default function Home() {
   return (
-    <main className="min-h-screen bg-white">
-      {/* Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#f0f0f0]/70 backdrop-blur-sm border-b border-black/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <Link href="/" className="text-xl font-medium text-black">
-                <Image
-                  src={"/images/marca/marca-no-back.png"}
-                  alt={"Logo Rafaela Andrade"}
-                  width={100}
-                  height={100}
-                />
+    <>
+      <SiteHeader />
+      <main className={pageMainClass}>
+        <HomeHero projects={heroProjects} />
+
+        <section className={sectionClass}>
+          <div className={shellClass}>
+            <div className="mb-9 grid items-end gap-5 md:grid-cols-[minmax(120px,0.24fr)_minmax(0,1fr)_auto]">
+              <p className={`${eyebrowClass} mb-0`}>portfolio</p>
+              <h2 className="max-w-[760px] text-[clamp(2.1rem,3.7vw,4.45rem)] leading-[1.05] font-light tracking-[-0.03em]">
+                Projetos selecionados
+              </h2>
+              <Link href="/projetos" className={textLinkClass}>
+                todos os projetos <ArrowRight size={16} />
               </Link>
             </div>
-            <div className="hidden md:flex items-center space-x-8">
-              <Link href="#sobre" className="text-sm text-black/70 hover:text-black transition-colors">
-                Sobre
-              </Link>
-              <Link href="/projetos" className="text-sm text-black/70 hover:text-black transition-colors">
-                Projetos
-              </Link>
-              <Link href="#servicos" className="text-sm text-black/70 hover:text-black transition-colors">
-                Serviços
-              </Link>
-              <Link href="#contato" className="text-sm text-black/70 hover:text-black transition-colors">
-                Contato
-              </Link>
+            <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-6">
+              {featured.map((project, index) => (
+                <ProjectCard key={project.id} project={project} className={featuredClasses[index]} />
+              ))}
             </div>
           </div>
-        </div>
-      </nav>
+        </section>
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 md:px-8 max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-        <FadeIn direction="right" delay={0.2}>
-          <div>
-            <h1 className={`text-4xl md:text-6xl font-light mb-1 ${alice.className}`}>
-              Rafaela Andrade
-            </h1>
-            <p className="text-xl text-black font-light mb-8">
-              Arquitetura de interiores
-            </p>
-            <p className="text-black/70 text-lg mb-8 max-w-md">
-              Arquiteta especializada em interiores, transformando ambientes em experiências que refletem
-              personalidade e estilo.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="#contato"
-                className="px-6 py-3 bg-black text-white rounded-full hover:bg-black/90 transition-colors hover:scale-105 transform duration-300"
-              >
-                Entre em contato
-              </Link>
-              <Link
-                href="/projetos"
-                className="px-6 py-3 border border-black/20 text-black rounded-full hover:bg-black/5 transition-colors hover:scale-105 transform duration-300"
-              >
-                Ver projetos
-              </Link>
+        <section className={`${sectionClass} bg-soft`}>
+          <div className={`${shellClass} grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(320px,0.72fr)]`}>
+            <div>
+              <p className={eyebrowClass}>processo</p>
+              <h2 className="max-w-[780px] text-[clamp(2.1rem,3.7vw,4.45rem)] leading-[1.05] font-light tracking-[-0.03em]">
+                Um metodo enxuto para reduzir ruido entre ideia, desenho e execucao.
+              </h2>
+            </div>
+            <div className="grid">
+              <article className="grid grid-cols-[30px_minmax(0,1fr)] gap-4 border-t border-line py-5">
+                <DraftingCompass className="text-muted" size={24} />
+                <div>
+                  <h3 className="mb-2 text-[1.05rem] font-semibold">Leitura inicial</h3>
+                  <p className={textMutedClass}>Briefing, medidas, referencias e prioridades de uso.</p>
+                </div>
+              </article>
+              <article className="grid grid-cols-[30px_minmax(0,1fr)] gap-4 border-t border-line py-5">
+                <Layers3 className="text-muted" size={24} />
+                <div>
+                  <h3 className="mb-2 text-[1.05rem] font-semibold">Conceito e materialidade</h3>
+                  <p className={textMutedClass}>Solucoes espaciais, paleta, luz e compatibilizacao visual.</p>
+                </div>
+              </article>
+              <article className="grid grid-cols-[30px_minmax(0,1fr)] gap-4 border-t border-line py-5">
+                <Ruler className="text-muted" size={24} />
+                <div>
+                  <h3 className="mb-2 text-[1.05rem] font-semibold">Projeto executivo</h3>
+                  <p className={textMutedClass}>Detalhamento para obra, marcenaria e tomadas de decisao.</p>
+                </div>
+              </article>
             </div>
           </div>
-        </FadeIn>
+        </section>
 
-          <FadeIn delay={0.4}>
-            <div className="relative h-[400px] w-full rounded-full overflow-hidden border-8 border-[#f0f0f0] transform transition-all duration-700 hover:scale-[1.02] hover:shadow-xl">
-              <Image src="/images/rafaela/rafaela-pic.jpeg?height=400&width=400" alt="Rafaela Andrade" fill className="object-cover" />
+        <section className={sectionClass} id="feedbacks">
+          <div className={shellClass}>
+            <div className="mb-9 grid gap-5">
+              <p className={`${eyebrowClass} mb-0`}>feedbacks</p>
+              <h2 className="text-[clamp(2.1rem,3.7vw,4.1rem)] leading-[1.05] font-light tracking-[-0.03em]">
+                O que fica depois da entrega.
+              </h2>
             </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      <section id="sobre" className="py-20 px-4 md:px-8 bg-[#f0f0f0]">
-        <div className="max-w-7xl mx-auto">
-          <div className="max-w-3xl mx-auto">
-            <FadeIn>
-              <h2 className="text-3xl font-light mb-8 text-black text-center">Sobre</h2>
-            </FadeIn>
-            <FadeIn delay={0.2}>
-              <p className="text-black/70 text-lg mb-6 text-justify">
-                Formada pela Universidade Tiradentes, minha trajetória é marcada por aprendizado contínuo e pela paixão em
-                transformar ideias em espaços que promovem bem-estar e qualidade de vida. Estou sempre atenta às novas
-                tendências e tecnologias da área, trazendo inovação e eficiência para os meus projetos. Seja para planejar,
-                projetar ou reimaginar espaços, meu compromisso é garantir que cada trabalho seja único, significativo e que
-                faça a diferença na vida das pessoas.
-              </p>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
-
-
-      {/* Featured Projects Section */}
-      <section id="projetos" className="py-20 px-4 md:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex justify-between items-end mb-12">
-            <FadeIn>
-              <h2 className="text-3xl font-light text-black">Projetos em Destaque</h2>
-            </FadeIn>
-            <FadeIn delay={0.2}>
-              <Link
-                href="/projetos"
-                className="flex items-center text-black/70 hover:text-black transition-colors group"
-              >
-                Ver todos
-                <ChevronRight className="w-4 h-4 ml-1 transform transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
-            </FadeIn>
-          </div>
-
-          <FadeIn delay={0.3}>
-            <ProjectCarousel />
-          </FadeIn>
-
-          <div className="mt-16 text-center">
-            <FadeIn delay={0.4}>
-              <Link
-                href="/projetos"
-                className="px-8 py-3 border border-black/20 text-black hover:bg-black/5 transition-colors inline-flex items-center group hover:scale-105 transform duration-300"
-              >
-                Explorar todos os projetos
-                <ChevronRight className="w-4 h-4 ml-2 transform transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section id="servicos" className="py-20 px-4 md:px-8 bg-[#f0f0f0]">
-        <div className="max-w-7xl mx-auto">
-          <FadeIn>
-            <h2 className="text-3xl font-light mb-12 text-center text-black">Serviços</h2>
-          </FadeIn>
-
-          <StaggerChildren>
-            <div className="grid md:grid-cols-3 gap-8">
-              <StaggerItem>
-                <div className="p-6 transform transition-all duration-500 hover:-translate-y-2 hover:shadow-lg">
-                  <h3 className="text-xl font-light mb-4 text-black">Projeto Residencial</h3>
-                  <p className="text-black/70">
-                    Transformação completa ou parcial de residências, criando ambientes que refletem a personalidade e
-                    necessidades dos moradores.
-                  </p>
-                </div>
-              </StaggerItem>
-
-              <StaggerItem>
-                <div className="p-6 transform transition-all duration-500 hover:-translate-y-2 hover:shadow-lg">
-                  <h3 className="text-xl font-light mb-4 text-black">Projeto Comercial</h3>
-                  <p className="text-black/70">
-                    Design de espaços comerciais que fortalecem a identidade da marca e proporcionam experiências
-                    memoráveis para clientes.
-                  </p>
-                </div>
-              </StaggerItem>
-
-              <StaggerItem>
-                <div className="p-6 transform transition-all duration-500 hover:-translate-y-2 hover:shadow-lg">
-                  <h3 className="text-xl font-light mb-4 text-black">Consultoria</h3>
-                  <p className="text-black/70">
-                    Orientação especializada para decisões pontuais em projetos de interiores, como seleção de cores,
-                    materiais, mobiliário e iluminação.
-                  </p>
-                </div>
-              </StaggerItem>
-            </div>
-          </StaggerChildren>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contato" className="py-24 px-4 md:px-8 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <FadeIn>
-            <h2 className="text-3xl font-light mb-16 text-center text-black">Contato</h2>
-          </FadeIn>
-
-          <div className="grid md:grid-cols-2 gap-12 items-start">
-            {/* Informações de contato */}
-            <FadeIn delay={0.2} direction="right">
-              <div className="bg-[#f0f0f0] p-10 rounded-lg">
-                <h3 className="text-xl font-light mb-8 border-b border-black/10 pb-4">Informações</h3>
-
-                <div className="space-y-6">
-                  <div
-                    className="flex items-center gap-4 text-black/80 hover:text-black transition-colors group"
-                  >
-                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:shadow transition-all">
-                      <Mail className="w-5 h-5" />
-                    </div>
-                    <span>arquitetarafaelaandradd@gmail.com</span>
-                  </div>
-
-                  <Link
-                    href="https://contate.me/arqrafaelaandrade"
-                    className="flex items-center gap-4 text-black/80 hover:text-black transition-colors group"
-                  >
-                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:shadow transition-all">
-                      <MessageCircle className="w-5 h-5" />
-                    </div>
-                    <span>(79) 99962-1864</span>
-                  </Link>
-
-                  <Link
-                    href="https://instagram.com/arq.rafaelaandrade"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-4 text-black/80 hover:text-black transition-colors group"
-                  >
-                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:shadow transition-all">
-                      <Instagram className="w-5 h-5" />
-                    </div>
-                    <span>@arq.rafaelaandrade</span>
-                  </Link>
-                </div>
-
-                <div className="mt-12">
-                  <p className="text-black/70 mb-4">Horário de atendimento</p>
-                  <p className="text-black">Segunda a Sexta: 9h às 18h</p>
-                </div>
-              </div>
-            </FadeIn>
-
-            {/* Formulário de contato */}
-            <FadeIn delay={0.4} direction="left">
-            <form
-              action="https://formsubmit.co/arquitetarafaelaandradd@gmail.com"
-              method="POST"
-              className="space-y-6"
-            >
-              {/* Proteção opcional contra bots */}
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_next" value="https://www.arqrafaelaandrade.com" />
-              
-              <div className="space-y-1">
-                <label htmlFor="name" className="text-sm text-black/70 block">
-                  Nome
-                </label>
-                <input
-                  id="name"
-                  type="text"
-                  name="name"
-                  className="w-full p-3 bg-[#f0f0f0] border-b-2 border-transparent focus:border-black/50 focus:outline-none transition-all duration-300"
-                  required
-                />
-              </div>
-
-              <div className="space-y-1">
-                <label htmlFor="email" className="text-sm text-black/70 block">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  name="email"
-                  className="w-full p-3 bg-[#f0f0f0] border-b-2 border-transparent focus:border-black/50 focus:outline-none transition-all duration-300"
-                  required
-                />
-              </div>
-
-              <div className="space-y-1">
-                <label htmlFor="phone" className="text-sm text-black/70 block">
-                  Telefone
-                </label>
-                <input
-                  id="phone"
-                  type="tel"
-                  name="phone"
-                  className="w-full p-3 bg-[#f0f0f0] border-b-2 border-transparent focus:border-black/50 focus:outline-none transition-all duration-300"
-                />
-              </div>
-
-              <div className="space-y-1">
-                <label htmlFor="message" className="text-sm text-black/70 block">
-                  Mensagem
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  className="w-full p-3 bg-[#f0f0f0] border-b-2 border-transparent focus:border-black/50 focus:outline-none transition-all duration-300 resize-none"
-                  required
-                ></textarea>
-              </div>
-
-              <div className="pt-4">
-                <button
-                  type="submit"
-                  className="w-full bg-black text-white py-4 px-6 hover:bg-black/90 transition-all duration-300 transform hover:translate-y-[-2px] hover:shadow-lg"
+            <div className="grid border-t border-line md:grid-cols-3 md:border-l">
+              {feedbacks.slice(0, 3).map((feedback) => (
+                <article
+                  className="flex min-h-[260px] flex-col justify-between border-b border-line px-5 py-6 md:border-r md:px-7"
+                  key={feedback.id}
                 >
-                  Enviar Mensagem
-                </button>
-              </div>
-            </form>
-
-            </FadeIn>
+                  <p className="text-[clamp(1.25rem,1.75vw,1.8rem)] leading-[1.22] font-light tracking-[-0.025em] text-ink">
+                    "{feedback.quote}"
+                  </p>
+                  <div>
+                    <strong>{feedback.clientName}</strong>
+                    <p className={textMutedClass}>{feedback.role}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Footer */}
-      <footer className="py-8 px-4 text-center text-black/70 border-t border-black/10">
-        <p>© {new Date().getFullYear()} Rafaela Andrade - Arquitetura de Interiores. Todos os direitos reservados.</p>
-      </footer>
-    </main>
+        <section className={`${sectionClass} bg-soft text-ink`}>
+          <div className={`${shellClass} flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center`}>
+            <p className="max-w-[760px] text-[clamp(2rem,3.2vw,3.9rem)] leading-[1.02] font-light tracking-[-0.03em]">
+              tem um terreno, uma reforma ou um ambiente para transformar?
+            </p>
+            <Link
+              href="/contato"
+              className={buttonPrimaryClass}
+            >
+              falar com o estudio <ArrowRight size={17} />
+            </Link>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
   )
 }

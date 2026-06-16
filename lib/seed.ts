@@ -1,0 +1,97 @@
+import type { Feedback, Project } from "@/lib/types"
+
+export const seedProjects: Project[] = [
+  {
+    id: "seed-1",
+    slug: "casa-patio-claro",
+    title: "Casa Patio Claro",
+    category: "Residencial",
+    location: "Maceio, AL",
+    year: "2025",
+    area: "286 m2",
+    coverUrl:
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=84",
+    summary: "Casa de linhas limpas, luz natural profunda e integracao continua entre jardim e areas sociais.",
+    description:
+      "O projeto organiza a vida da familia ao redor de um patio central, equilibrando privacidade, ventilacao cruzada e materiais de manutencao simples. A paleta combina madeira, pedra clara e planos brancos para reforcar amplitude sem perder acolhimento.",
+    images: [
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1400&q=84",
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=84",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=84"
+    ],
+    details: ["Patio central como eixo termico", "Esquadrias amplas com sombreamento", "Materiais naturais em tons claros"],
+    featured: true
+  },
+  {
+    id: "seed-2",
+    slug: "apartamento-bruma",
+    title: "Apartamento Bruma",
+    category: "Interiores",
+    location: "Recife, PE",
+    year: "2024",
+    area: "112 m2",
+    coverUrl:
+      "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=1600&q=84",
+    summary: "Reforma completa com marcenaria sob medida, circulacao fluida e atmosfera serena.",
+    description:
+      "A intervencao removeu barreiras visuais e reposicionou funcoes para criar uma rotina mais eficiente. O mobiliario fixo resolve armazenamento, apoio de trabalho e integracao da cozinha sem sobrecarregar o ambiente.",
+    images: [
+      "https://images.unsplash.com/photo-1600210491369-e753d80a41f3?auto=format&fit=crop&w=1400&q=84",
+      "https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?auto=format&fit=crop&w=1400&q=84",
+      "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=1400&q=84"
+    ],
+    details: ["Marcenaria integrada", "Iluminacao em camadas", "Cozinha aberta com ilha compacta"],
+    featured: true
+  },
+  {
+    id: "seed-3",
+    slug: "studio-sal",
+    title: "Studio Sal",
+    category: "Comercial",
+    location: "Salvador, BA",
+    year: "2025",
+    area: "74 m2",
+    coverUrl:
+      "https://images.unsplash.com/photo-1604014238170-4def1e4e6fcf?auto=format&fit=crop&w=1600&q=84",
+    summary: "Espaco comercial compacto com identidade forte, operacao simples e acabamentos resistentes.",
+    description:
+      "O layout prioriza fluxo de atendimento, exposicao de produtos e uma fachada reconhecivel. A escolha de texturas minerais, metal escovado e madeira equilibra presenca visual com durabilidade para uso intenso.",
+    images: [
+      "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1400&q=84",
+      "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1400&q=84",
+      "https://images.unsplash.com/photo-1600566752229-250ed79470b9?auto=format&fit=crop&w=1400&q=84"
+    ],
+    details: ["Fachada com leitura imediata", "Bancada operacional continua", "Revestimentos de alta resistencia"],
+    featured: true
+  }
+]
+
+export const seedFeedbacks: Feedback[] = [
+  {
+    id: "feedback-1",
+    clientName: "Marina Costa",
+    role: "Cliente residencial",
+    quote:
+      "A casa ficou elegante sem perder praticidade. A obra teve decisao clara em cada etapa e o resultado parece exatamente nosso.",
+    projectSlug: "casa-patio-claro",
+    approved: true
+  },
+  {
+    id: "feedback-2",
+    clientName: "Felipe Nogueira",
+    role: "Reforma de apartamento",
+    quote:
+      "O apartamento ganhou espaco, luz e organizacao. A marcenaria resolveu problemas que a gente ja tinha normalizado.",
+    projectSlug: "apartamento-bruma",
+    approved: true
+  },
+  {
+    id: "feedback-3",
+    clientName: "Livia Ramos",
+    role: "Projeto comercial",
+    quote:
+      "O estudio ficou bonito e facil de operar. Clientes entendem a marca logo na entrada, e a equipe trabalha melhor.",
+    projectSlug: "studio-sal",
+    approved: true
+  }
+]
