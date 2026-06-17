@@ -4,6 +4,8 @@ import { SiteHeader } from "@/components/site-header"
 import { listProjects } from "@/lib/data"
 import { eyebrowClass, pageMainClass, sectionClass, shellClass, textMutedClass } from "@/lib/ui"
 
+export const dynamic = "force-dynamic"
+
 export default async function ProjectsPage() {
   const projects = await listProjects()
 

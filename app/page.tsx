@@ -15,6 +15,8 @@ import {
   textMutedClass
 } from "@/lib/ui"
 
+export const dynamic = "force-dynamic"
+
 export default async function HomePage() {
   const [projects, feedbacks] = await Promise.all([listProjects(), listFeedbacks()])
   const featured = projects.filter((project) => project.featured).slice(0, 4)

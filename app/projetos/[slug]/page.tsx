@@ -1,16 +1,13 @@
 import { notFound } from "next/navigation"
 import { Footer } from "@/components/footer"
 import { SiteHeader } from "@/components/site-header"
-import { getProjectBySlug, listProjects } from "@/lib/data"
+import { getProjectBySlug } from "@/lib/data"
 import { eyebrowClass, pageMainClass, sectionClass, shellClass } from "@/lib/ui"
+
+export const dynamic = "force-dynamic"
 
 type PageProps = {
   params: Promise<{ slug: string }>
-}
-
-export async function generateStaticParams() {
-  const projects = await listProjects()
-  return projects.map((project) => ({ slug: project.slug }))
 }
 
 export default async function ProjectDetailPage({ params }: PageProps) {
