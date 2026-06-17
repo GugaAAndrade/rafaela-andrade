@@ -358,20 +358,13 @@ export function AdminDashboard() {
                   <LoginFeature icon={Inbox} text="Triagem de contatos" />
                 </div>
               </div>
-              <div className="flex items-center gap-3 rounded-2xl border border-white/12 bg-white/6 px-4 py-4">
-                <div className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10">
-                  <Sparkles size={18} />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold">Ambiente privado</p>
-                  <p className="text-sm text-white/60">Apenas para gestao interna do estudio.</p>
-                </div>
-              </div>
             </section>
 
             <section className="grid gap-8 px-5 py-6 md:px-8 md:py-9">
               <div className="grid gap-3">
-                <p className={`${eyebrowClass} mb-0`}>acesso restrito</p>
+                <p className="text-[0.64rem] font-extrabold uppercase tracking-[0.14em] text-muted">
+                  acesso restrito
+                </p>
                 <h1 className="text-[clamp(2.2rem,5vw,4.1rem)] leading-[0.95] font-light tracking-[-0.03em]">
                   Entrar no admin
                 </h1>
