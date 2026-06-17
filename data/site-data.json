@@ -3,25 +3,22 @@
     {
       "id": "seed-1",
       "slug": "casa-patio-claro",
-      "title": "Casa Patio Claro",
+      "title": "Casa Patio Clara",
       "category": "Residencial",
       "location": "Maceio, AL",
       "year": "2025",
-      "area": "286 m2",
-      "coverUrl": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=84",
+      "area": "",
+      "coverUrl": "https://res.cloudinary.com/dglfnodjm/image/upload/v1781675211/rafaela-andrade/projects/file_jd9xea.jpg",
       "summary": "Casa de linhas limpas, luz natural profunda e integracao continua entre jardim e areas sociais.",
       "description": "O projeto organiza a vida da familia ao redor de um patio central, equilibrando privacidade, ventilacao cruzada e materiais de manutencao simples. A paleta combina madeira, pedra clara e planos brancos para reforcar amplitude sem perder acolhimento.",
       "images": [
-        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1400&q=84",
-        "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=84",
-        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=84"
+        "https://res.cloudinary.com/dglfnodjm/image/upload/v1781675211/rafaela-andrade/projects/file_jd9xea.jpg",
+        "https://res.cloudinary.com/dglfnodjm/image/upload/v1781675212/rafaela-andrade/projects/file_ufong4.jpg",
+        "https://res.cloudinary.com/dglfnodjm/image/upload/v1781675212/rafaela-andrade/projects/file_kngw4h.jpg"
       ],
-      "details": [
-        "Patio central como eixo termico",
-        "Esquadrias amplas com sombreamento",
-        "Materiais naturais em tons claros"
-      ],
-      "featured": true
+      "details": [],
+      "featured": true,
+      "createdAt": "2026-06-17T05:46:26.067Z"
     },
     {
       "id": "seed-2",

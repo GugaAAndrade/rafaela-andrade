@@ -1,22 +1,10 @@
-import crypto from "node:crypto"
-import { mkdir, writeFile } from "node:fs/promises"
-import path from "node:path"
 import { NextResponse } from "next/server"
 import { hasAdminAccess } from "@/lib/auth"
+import { uploadProjectImage } from "@/lib/cloudinary"
 
 export async function POST(request: Request) {
   if (!(await hasAdminAccess())) {
     return NextResponse.json({ error: "Nao autorizado." }, { status: 401 })
-  }
-
-  if (process.env.VERCEL === "1") {
-    return NextResponse.json(
-      {
-        error:
-          "A Vercel nao salva uploads locais. Use imagens em public/ antes do deploy ou cole uma URL externa."
-      },
-      { status: 400 }
-    )
   }
 
   const formData = await request.formData()
@@ -26,13 +14,19 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Arquivo ausente." }, { status: 400 })
   }
 
-  const extension = file.name.split(".").pop()?.toLowerCase() || "jpg"
-  const safeName = `${Date.now()}-${crypto.randomUUID()}.${extension}`
-  const publicDir = path.join(process.cwd(), "public", "uploads")
-  const diskPath = path.join(publicDir, safeName)
+  if (!file.type.startsWith("image/")) {
+    return NextResponse.json({ error: "Envie apenas arquivos de imagem." }, { status: 400 })
+  }
 
-  await mkdir(publicDir, { recursive: true })
-  await writeFile(diskPath, Buffer.from(await file.arrayBuffer()))
+  try {
+    const upload = await uploadProjectImage(file)
 
-  return NextResponse.json({ url: `/uploads/${safeName}` })
+    return NextResponse.json({
+      url: upload.url,
+      secureUrl: upload.secureUrl
+    })
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Nao foi possivel enviar a imagem."
+    return NextResponse.json({ error: message }, { status: 500 })
+  }
 }

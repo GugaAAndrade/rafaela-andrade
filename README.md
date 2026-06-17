@@ -10,7 +10,7 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Sem `.env.local`, o admin local aceita `admin123`. Em producao, defina `ADMIN_PASSWORD` e `ADMIN_SECRET`.
+Sem `.env.local`, o admin local aceita `admin123`. Em producao, defina `ADMIN_PASSWORD`, `ADMIN_SECRET` e as credenciais do Cloudinary.
 
 ## Como os dados funcionam sem Supabase
 
@@ -22,24 +22,29 @@ Na Vercel, sem banco externo, alteracoes feitas pelo admin online nao ficam salv
 
 ## Fotos dos projetos
 
-Opcoes gratuitas sem Supabase:
+As fotos sobem pelo admin e sao enviadas para o Cloudinary.
 
-- Colocar as fotos em `public/uploads` ou outra pasta dentro de `public` e usar caminhos como `/uploads/foto.jpg`.
-- Usar URLs externas das fotos, por exemplo Cloudinary Free, Google Drive publico direto, GitHub raw ou outro lugar onde voce ja tenha os projetos.
+Fluxo:
 
-Para fotos profissionais, prefira imagens otimizadas em JPG/WebP e nomes sem acentos ou espacos.
+1. Entre em `/admin`.
+2. Crie ou edite um projeto.
+3. Use `Upload de imagens` para selecionar uma ou varias fotos.
+4. A primeira imagem enviada vira a capa caso `Imagem principal` ainda esteja vazia.
+5. As URLs retornadas pelo Cloudinary entram automaticamente na galeria do projeto.
+
+Os campos de URL continuam disponiveis como fallback manual.
 
 ## Hospedagem gratuita indicada
 
 - **Vercel** para hospedar o site.
 - **GitHub** para versionar o conteudo e acionar deploy automatico.
-- **Cloudinary Free** apenas se voce nao quiser guardar fotos no repositorio.
+- **Cloudinary Free** para armazenar e servir as imagens dos projetos.
 
 ## Fluxo recomendado
 
 1. Rode `npm run dev`.
 2. Acesse `/admin`.
 3. Cadastre ou edite projetos e feedbacks.
-4. Para imagens, faca upload local ou cole a URL onde a foto ja esta hospedada.
+4. Para imagens, faca upload no admin. Se precisar, cole URLs manualmente como fallback.
 5. Commit e push.
 6. A Vercel faz o deploy automaticamente.
