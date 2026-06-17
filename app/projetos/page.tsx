@@ -1,5 +1,5 @@
 import { Footer } from "@/components/footer"
-import { ProjectCard } from "@/components/project-card"
+import { ProjectsCatalog } from "@/components/projects-catalog"
 import { SiteHeader } from "@/components/site-header"
 import { listProjects } from "@/lib/data"
 import { eyebrowClass, pageMainClass, sectionClass, shellClass, textMutedClass } from "@/lib/ui"
@@ -25,17 +25,7 @@ export default async function ProjectsPage() {
           </div>
         </section>
         <section className={sectionClass}>
-          <div className={`${shellClass} grid gap-3 md:grid-cols-2 lg:grid-cols-6`}>
-            {projects.map((project, index) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                className={
-                  index % 3 === 0 ? "lg:col-span-4" : index % 3 === 1 ? "lg:col-span-2" : "lg:col-span-3"
-                }
-              />
-            ))}
-          </div>
+          <ProjectsCatalog projects={projects} />
         </section>
       </main>
       <Footer />

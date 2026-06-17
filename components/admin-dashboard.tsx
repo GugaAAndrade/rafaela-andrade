@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useId, useMemo, useState } from "react"
 import type { LucideIcon } from "lucide-react"
 import {
   ArrowUpRight,
@@ -1330,7 +1330,8 @@ function Field({
   onChange: (value: string) => void
   required?: boolean
 }) {
-  const id = label.toLowerCase().replace(/\s+/g, "-")
+  const reactId = useId()
+  const id = `${label.toLowerCase().replace(/\s+/g, "-")}-${reactId.replace(/:/g, "")}`
   return (
     <div className={fieldClass}>
       <label className={labelClass} htmlFor={id}>{label}</label>
@@ -1356,7 +1357,8 @@ function TextArea({
   onChange: (value: string) => void
   required?: boolean
 }) {
-  const id = label.toLowerCase().replace(/\s+/g, "-")
+  const reactId = useId()
+  const id = `${label.toLowerCase().replace(/\s+/g, "-")}-${reactId.replace(/:/g, "")}`
   return (
     <div className={fieldClass}>
       <label className={labelClass} htmlFor={id}>{label}</label>

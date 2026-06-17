@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation"
 import { Footer } from "@/components/footer"
+import { ProjectGallery } from "@/components/project-gallery"
 import { SiteHeader } from "@/components/site-header"
 import { getProjectBySlug } from "@/lib/data"
 import { eyebrowClass, pageMainClass, sectionClass, shellClass } from "@/lib/ui"
@@ -61,22 +62,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             </article>
           </div>
         </section>
-        <section className={`${sectionClass} bg-soft`}>
-          <div className={`${shellClass} grid gap-3 md:grid-cols-12`}>
-            {[project.coverUrl, ...project.images].map((image, index) => (
-              <img
-                className={
-                  index % 3 === 0
-                    ? "h-[240px] rounded-md object-cover sm:h-[320px] md:col-span-8 md:h-[52vw] md:max-h-[620px]"
-                    : "h-[240px] rounded-md object-cover sm:h-[320px] md:col-span-4 md:h-[52vw] md:max-h-[620px]"
-                }
-                key={image}
-                src={image}
-                alt={`Imagem do projeto ${project.title}`}
-              />
-            ))}
-          </div>
-        </section>
+        <ProjectGallery title={project.title} images={[project.coverUrl, ...project.images]} />
       </main>
       <Footer />
     </>

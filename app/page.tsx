@@ -23,12 +23,8 @@ export default async function HomePage() {
   const heroProjects = featured.length
     ? [...featured, ...projects.filter((project) => !featured.some((item) => item.id === project.id))]
     : projects
-  const featuredClasses = [
-    "lg:col-span-4",
-    "lg:col-span-2",
-    "lg:col-span-3",
-    "lg:col-span-3"
-  ]
+  const primaryFeatured = featured[0]
+  const secondaryFeatured = featured.slice(1)
 
   return (
     <>
@@ -47,11 +43,26 @@ export default async function HomePage() {
                 todos os projetos <ArrowRight size={16} />
               </Link>
             </div>
-            <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-6">
-              {featured.map((project, index) => (
-                <ProjectCard key={project.id} project={project} className={featuredClasses[index]} />
-              ))}
-            </div>
+            {primaryFeatured ? (
+              <div className="grid gap-4 md:gap-5">
+                <ProjectCard
+                  project={primaryFeatured}
+                  imageAspectClass="aspect-[16/12] md:aspect-[16/9] xl:aspect-[16/8.5]"
+                />
+
+                {secondaryFeatured.length ? (
+                  <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                    {secondaryFeatured.map((project) => (
+                      <ProjectCard
+                        key={project.id}
+                        project={project}
+                        imageAspectClass="aspect-[4/3] sm:aspect-[4/3] xl:aspect-[5/4]"
+                      />
+                    ))}
+                  </div>
+                ) : null}
+              </div>
+            ) : null}
           </div>
         </section>
 
