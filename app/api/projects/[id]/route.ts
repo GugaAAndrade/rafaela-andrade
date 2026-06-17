@@ -8,7 +8,7 @@ type RouteContext = {
 
 export async function PUT(request: Request, context: RouteContext) {
   if (!(await hasAdminAccess())) {
-    return NextResponse.json({ error: "Nao autorizado." }, { status: 401 })
+    return NextResponse.json({ error: "Não autorizado." }, { status: 401 })
   }
 
   try {
@@ -21,7 +21,7 @@ export async function PUT(request: Request, context: RouteContext) {
 
 export async function DELETE(_request: Request, context: RouteContext) {
   if (!(await hasAdminAccess())) {
-    return NextResponse.json({ error: "Nao autorizado." }, { status: 401 })
+    return NextResponse.json({ error: "Não autorizado." }, { status: 401 })
   }
 
   try {

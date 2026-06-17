@@ -38,7 +38,7 @@ export default function ContactPage() {
                 <MapPin className="text-muted" size={25} />
                 <div>
                   <h3 className="mb-2 text-[1.05rem] font-semibold">Atendimento</h3>
-                  <p className={textMutedClass}>Maceio e projetos selecionados em outras cidades.</p>
+                  <p className={textMutedClass}>Maceió e projetos selecionados em outras cidades.</p>
                 </div>
               </article>
             </div>

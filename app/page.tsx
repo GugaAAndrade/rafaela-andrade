@@ -35,7 +35,7 @@ export default async function HomePage() {
         <section className={sectionClass}>
           <div className={shellClass}>
             <div className="mb-9 grid items-end gap-5 md:grid-cols-[minmax(120px,0.24fr)_minmax(0,1fr)_auto]">
-              <p className={`${eyebrowClass} mb-0`}>portfolio</p>
+              <p className={`${eyebrowClass} mb-0`}>portfólio</p>
               <h2 className="max-w-[760px] text-[clamp(2.1rem,3.7vw,4.45rem)] leading-[1.05] font-light tracking-[-0.03em]">
                 Projetos selecionados
               </h2>
@@ -71,7 +71,7 @@ export default async function HomePage() {
             <div>
               <p className={eyebrowClass}>processo</p>
               <h2 className="max-w-[780px] text-[clamp(2.1rem,3.7vw,4.45rem)] leading-[1.05] font-light tracking-[-0.03em]">
-                Um metodo enxuto para reduzir ruido entre ideia, desenho e execucao.
+                Um método enxuto para reduzir ruído entre ideia, desenho e execução.
               </h2>
             </div>
             <div className="grid">
@@ -79,21 +79,21 @@ export default async function HomePage() {
                 <DraftingCompass className="text-muted" size={24} />
                 <div>
                   <h3 className="mb-2 text-[1.05rem] font-semibold">Leitura inicial</h3>
-                  <p className={textMutedClass}>Briefing, medidas, referencias e prioridades de uso.</p>
+                  <p className={textMutedClass}>Briefing, medidas, referências e prioridades de uso.</p>
                 </div>
               </article>
               <article className="grid grid-cols-[30px_minmax(0,1fr)] gap-4 border-t border-line py-5">
                 <Layers3 className="text-muted" size={24} />
                 <div>
                   <h3 className="mb-2 text-[1.05rem] font-semibold">Conceito e materialidade</h3>
-                  <p className={textMutedClass}>Solucoes espaciais, paleta, luz e compatibilizacao visual.</p>
+                  <p className={textMutedClass}>Soluções espaciais, paleta, luz e compatibilização visual.</p>
                 </div>
               </article>
               <article className="grid grid-cols-[30px_minmax(0,1fr)] gap-4 border-t border-line py-5">
                 <Ruler className="text-muted" size={24} />
                 <div>
                   <h3 className="mb-2 text-[1.05rem] font-semibold">Projeto executivo</h3>
-                  <p className={textMutedClass}>Detalhamento para obra, marcenaria e tomadas de decisao.</p>
+                  <p className={textMutedClass}>Detalhamento para obra, marcenaria e tomadas de decisão.</p>
                 </div>
               </article>
             </div>
@@ -136,7 +136,7 @@ export default async function HomePage() {
               href="/contato"
               className={buttonPrimaryClass}
             >
-              falar com o estudio <ArrowRight size={17} />
+              falar com o estúdio <ArrowRight size={17} />
             </Link>
           </div>
         </section>

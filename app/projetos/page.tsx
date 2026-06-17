@@ -15,12 +15,12 @@ export default async function ProjectsPage() {
       <main className={pageMainClass}>
         <section className="grid min-h-[30vh] items-end border-b border-line bg-soft py-12 md:min-h-[38vh] md:py-16 xl:py-20">
           <div className={shellClass}>
-            <p className={eyebrowClass}>Portfolio</p>
+            <p className={eyebrowClass}>Portfólio</p>
             <h1 className="max-w-[920px] text-[clamp(2rem,8vw,5.6rem)] leading-[0.98] font-light tracking-[-0.03em]">
-              Projetos construidos a partir de contexto, luz e uso.
+              Projetos construídos a partir de contexto, luz e uso.
             </h1>
             <p className={`${textMutedClass} max-w-[38rem]`}>
-              Uma selecao de residencias, reformas e espacos comerciais com ficha, imagens e decisoes de projeto.
+              Uma seleção de residências, reformas e espaços comerciais com ficha, imagens e decisões de projeto.
             </p>
           </div>
         </section>

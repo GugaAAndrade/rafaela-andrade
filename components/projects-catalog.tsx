@@ -68,7 +68,7 @@ export function ProjectsCatalog({ projects }: { projects: Project[] }) {
               <input
                 className={cn(inputClass, "pl-10")}
                 type="search"
-                placeholder="Titulo, local, categoria ou ano"
+                placeholder="Título, local, categoria ou ano"
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
               />
@@ -127,7 +127,7 @@ export function ProjectsCatalog({ projects }: { projects: Project[] }) {
           <div className="grid max-w-[28rem] gap-3">
             <strong className="text-[1.15rem] font-medium text-ink">Nenhum projeto encontrado</strong>
             <p className={textMutedClass}>
-              Ajuste a busca ou remova um dos filtros para ver novamente a selecao completa.
+              Ajuste a busca ou remova um dos filtros para ver novamente a seleção completa.
             </p>
           </div>
         </div>

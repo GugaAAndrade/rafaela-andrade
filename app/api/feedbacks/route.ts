@@ -6,7 +6,7 @@ export async function GET(request: Request) {
   const url = new URL(request.url)
   const admin = url.searchParams.get("admin") === "1"
   if (admin && !(await hasAdminAccess())) {
-    return NextResponse.json({ error: "Nao autorizado." }, { status: 401 })
+    return NextResponse.json({ error: "Não autorizado." }, { status: 401 })
   }
 
   try {
@@ -17,7 +17,7 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  if (!(await hasAdminAccess())) return NextResponse.json({ error: "Nao autorizado." }, { status: 401 })
+  if (!(await hasAdminAccess())) return NextResponse.json({ error: "Não autorizado." }, { status: 401 })
   try {
     return NextResponse.json(await upsertFeedback(null, await request.json()))
   } catch (error) {
@@ -26,7 +26,7 @@ export async function POST(request: Request) {
 }
 
 export async function PATCH(request: Request) {
-  if (!(await hasAdminAccess())) return NextResponse.json({ error: "Nao autorizado." }, { status: 401 })
+  if (!(await hasAdminAccess())) return NextResponse.json({ error: "Não autorizado." }, { status: 401 })
   try {
     const body = await request.json()
     return NextResponse.json(await upsertFeedback(body.id, body))
@@ -36,7 +36,7 @@ export async function PATCH(request: Request) {
 }
 
 export async function DELETE(request: Request) {
-  if (!(await hasAdminAccess())) return NextResponse.json({ error: "Nao autorizado." }, { status: 401 })
+  if (!(await hasAdminAccess())) return NextResponse.json({ error: "Não autorizado." }, { status: 401 })
   try {
     const { id } = await request.json()
     await deleteFeedback(id)

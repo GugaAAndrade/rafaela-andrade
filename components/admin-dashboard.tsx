@@ -69,14 +69,14 @@ const tabMeta: Record<
 > = {
   overview: {
     label: "Painel",
-    title: "Painel do estudio",
-    description: "Visao geral do conteudo, contatos recentes e andamento do portfolio.",
+    title: "Painel do estúdio",
+    description: "Visão geral do conteúdo, contatos recentes e andamento do portfólio.",
     icon: LayoutDashboard
   },
   projects: {
     label: "Projetos",
     title: "Projetos",
-    description: "Cadastre, revise e organize a apresentacao dos projetos publicados.",
+    description: "Cadastre, revise e organize a apresentação dos projetos publicados.",
     icon: FolderOpen
   },
   feedbacks: {
@@ -164,7 +164,7 @@ export function AdminDashboard() {
       body: JSON.stringify({ password })
     })
     if (!response.ok) {
-      setLoginStatus("Senha invalida.")
+      setLoginStatus("Senha inválida.")
       return
     }
     setAuthorized(true)
@@ -239,7 +239,7 @@ export function AdminDashboard() {
   async function removeProject(id: string) {
     if (!confirm("Excluir este projeto?")) return
     const response = await fetch(`/api/projects/${id}`, { method: "DELETE" })
-    await handleSaveResponse(response, "Projeto excluido.")
+    await handleSaveResponse(response, "Projeto excluído.")
   }
 
   async function saveFeedback(event: React.FormEvent<HTMLFormElement>) {
@@ -262,7 +262,7 @@ export function AdminDashboard() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id })
     })
-    await handleSaveResponse(response, "Feedback excluido.")
+    await handleSaveResponse(response, "Feedback excluído.")
   }
 
   async function uploadImage(event: React.ChangeEvent<HTMLInputElement>) {
@@ -287,7 +287,7 @@ export function AdminDashboard() {
 
       if (!response.ok) {
         setLoading(false)
-        setStatus(data?.error || "Nao foi possivel enviar a imagem.")
+        setStatus(data?.error || "Não foi possível enviar a imagem.")
         event.target.value = ""
         return
       }
@@ -296,7 +296,7 @@ export function AdminDashboard() {
 
       if (!url) {
         setLoading(false)
-        setStatus("Upload concluido sem URL valida retornada.")
+        setStatus("Upload concluído sem URL válida retornada.")
         event.target.value = ""
         return
       }
@@ -321,7 +321,7 @@ export function AdminDashboard() {
   async function handleSaveResponse(response: Response, successMessage: string) {
     const data = await response.json().catch(() => null)
     if (!response.ok) {
-      setStatus(data?.error || "Operacao nao concluida.")
+      setStatus(data?.error || "Operação não concluída.")
       return
     }
     setStatus(successMessage)
@@ -348,7 +348,7 @@ export function AdminDashboard() {
                       Painel administrativo
                     </p>
                     <p className="max-w-[20rem] text-sm leading-6">
-                      Controle o portfolio, receba novas mensagens e mantenha a apresentacao do estudio alinhada.
+                      Controle o portfólio, receba novas mensagens e mantenha a apresentação do estúdio alinhada.
                     </p>
                   </div>
                 </div>
@@ -369,7 +369,7 @@ export function AdminDashboard() {
                   Entrar no admin
                 </h1>
                 <p className="max-w-[34rem] text-[0.98rem] leading-7 text-muted">
-                  Use a senha configurada para editar conteudo, atualizar as capas dos projetos e acompanhar novas mensagens.
+                  Use a senha configurada para editar conteúdo, atualizar as capas dos projetos e acompanhar novas mensagens.
                 </p>
               </div>
 
@@ -414,7 +414,7 @@ export function AdminDashboard() {
               height={272}
               className="h-auto w-[152px] object-contain brightness-[1.9] invert"
             />
-            <nav className="grid gap-1" aria-label="Navegacao do admin">
+            <nav className="grid gap-1" aria-label="Navegação do admin">
               {(Object.keys(tabMeta) as Tab[]).map((item) => (
                 <SidebarButton
                   key={item}
@@ -540,7 +540,7 @@ export function AdminDashboard() {
                 <div className="grid gap-6 xl:grid-cols-[minmax(0,1.05fr)_minmax(360px,0.95fr)]">
                   <SurfaceCard
                     title="Mensagens recentes"
-                    subtitle="Ultimos contatos recebidos pelo formulario do site."
+                    subtitle="Últimos contatos recebidos pelo formulário do site."
                     actionLabel={contacts.length ? "ver inbox" : undefined}
                     onAction={contacts.length ? () => setTab("contacts") : undefined}
                   >
@@ -549,7 +549,7 @@ export function AdminDashboard() {
                         <EmptyState
                           icon={Inbox}
                           title="Sem mensagens"
-                          description="Quando alguem enviar contato pelo site, ele aparece aqui."
+                          description="Quando alguém enviar contato pelo site, ele aparece aqui."
                         />
                       ) : (
                         contacts.slice(0, 4).map((contact) => (
@@ -567,7 +567,7 @@ export function AdminDashboard() {
 
                   <SurfaceCard
                     title="Projetos recentes"
-                    subtitle="Acompanhe o portfolio mais novo e revise capas rapidamente."
+                    subtitle="Acompanhe o portfólio mais novo e revise capas rapidamente."
                     actionLabel={projects.length ? "editar projeto" : undefined}
                     onAction={projects.length ? () => setTab("projects") : undefined}
                   >
@@ -576,7 +576,7 @@ export function AdminDashboard() {
                         <EmptyState
                           icon={FolderOpen}
                           title="Sem projetos"
-                          description="Crie o primeiro projeto para alimentar a home e as paginas internas."
+                          description="Crie o primeiro projeto para alimentar a home e as páginas internas."
                         />
                       ) : (
                         projects.slice(0, 4).map((project) => (
@@ -599,7 +599,7 @@ export function AdminDashboard() {
                         <EmptyState
                           icon={MessageSquare}
                           title="Sem feedbacks"
-                          description="Cadastre depoimentos para reforcar confianca nas paginas publicas."
+                          description="Cadastre depoimentos para reforçar confiança nas páginas públicas."
                         />
                       ) : (
                         feedbacks.slice(0, 3).map((feedback) => (
@@ -611,7 +611,7 @@ export function AdminDashboard() {
 
                   <SurfaceCard
                     title="Projeto em destaque"
-                    subtitle="Resumo rapido do item que aparece na home."
+                    subtitle="Resumo rápido do item que aparece na home."
                   >
                     {projects.find((project) => project.featured) ? (
                       <HeroProjectCard project={projects.find((project) => project.featured)!} />
@@ -630,7 +630,7 @@ export function AdminDashboard() {
             {tab === "projects" ? (
               <div className="grid gap-6">
                 <div className="grid gap-6 xl:grid-cols-[minmax(320px,0.95fr)_minmax(0,1.05fr)]">
-                  <SurfaceCard title="Projeto em edicao" subtitle="Resumo visual antes de salvar.">
+                  <SurfaceCard title="Projeto em edição" subtitle="Resumo visual antes de salvar.">
                     <div className="grid gap-5">
                       <div className="overflow-hidden rounded-[22px] border border-line bg-soft">
                         {projectForm.coverUrl ? (
@@ -653,11 +653,11 @@ export function AdminDashboard() {
                         <div className="flex flex-wrap items-center gap-2">
                           <Badge>{projectForm.category || "Categoria"}</Badge>
                           <Badge tone={projectForm.featured ? "accent" : "default"}>
-                            {projectForm.featured ? "Destaque na home" : "Nao destacado"}
+                            {projectForm.featured ? "Destaque na home" : "Não destacado"}
                           </Badge>
                         </div>
                         <h2 className="text-[1.8rem] leading-[1.02] font-light tracking-[-0.03em] text-ink">
-                          {projectForm.title || "Titulo do projeto"}
+                          {projectForm.title || "Título do projeto"}
                         </h2>
                         <div className="flex flex-wrap gap-3 text-sm text-muted">
                           {projectForm.location ? (
@@ -678,7 +678,7 @@ export function AdminDashboard() {
                     </div>
                   </SurfaceCard>
 
-                  <SurfaceCard title="Galeria pronta" subtitle="Imagens que vao compor a pagina individual.">
+                  <SurfaceCard title="Galeria pronta" subtitle="Imagens que vão compor a página individual.">
                     {projectImages.length ? (
                       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
                         {projectImages.slice(0, 6).map((image, index) => (
@@ -698,7 +698,7 @@ export function AdminDashboard() {
                       <EmptyState
                         icon={Upload}
                         title="Sem imagens carregadas"
-                        description="Use o upload para enviar uma ou varias fotos. Elas entram aqui e depois na pagina do projeto."
+                        description="Use o upload para enviar uma ou várias fotos. Elas entram aqui e depois na página do projeto."
                       />
                     )}
                   </SurfaceCard>
@@ -707,9 +707,9 @@ export function AdminDashboard() {
                 <div className="grid gap-6 xl:grid-cols-[minmax(0,1.05fr)_minmax(360px,0.95fr)]">
                   <SurfaceCard title={selectedProjectTitle} subtitle="Campos principais do cadastro.">
                     <form className="grid gap-6" onSubmit={saveProject}>
-                      <FormSection title="Identificacao">
+                      <FormSection title="Identificação">
                         <div className="grid gap-4 md:grid-cols-2">
-                          <Field label="Titulo" value={projectForm.title} onChange={(title) => setProjectForm({ ...projectForm, title })} />
+                          <Field label="Título" value={projectForm.title} onChange={(title) => setProjectForm({ ...projectForm, title })} />
                           <Field label="Slug" value={projectForm.slug} onChange={(slug) => setProjectForm({ ...projectForm, slug })} />
                         </div>
                         <div className="grid gap-4 md:grid-cols-3">
@@ -719,12 +719,12 @@ export function AdminDashboard() {
                         </div>
                       </FormSection>
 
-                      <FormSection title="Conteudo">
+                      <FormSection title="Conteúdo">
                         <TextArea label="Resumo" value={projectForm.summary} onChange={(summary) => setProjectForm({ ...projectForm, summary })} />
-                        <TextArea label="Descricao" value={projectForm.description} onChange={(description) => setProjectForm({ ...projectForm, description })} />
+                        <TextArea label="Descrição" value={projectForm.description} onChange={(description) => setProjectForm({ ...projectForm, description })} />
                       </FormSection>
 
-                      <FormSection title="Midia">
+                      <FormSection title="Mídia">
                         <Field
                           required={false}
                           label="Imagem principal (URL manual)"
@@ -740,7 +740,7 @@ export function AdminDashboard() {
                             <div className="grid gap-1">
                               <p className="text-sm font-semibold text-ink">Upload de imagens</p>
                               <p className="text-sm leading-6 text-muted">
-                                Envie uma ou varias fotos. A primeira enviada vira a capa se o campo principal estiver vazio.
+                                Envie uma ou várias fotos. A primeira enviada vira a capa se o campo principal estiver vazio.
                               </p>
                             </div>
                           </div>
@@ -779,7 +779,7 @@ export function AdminDashboard() {
                         </button>
                         <button className={buttonGhostClass} type="button" onClick={() => setProjectForm(emptyProject)}>
                           <Plus size={17} />
-                          limpar formulario
+                          limpar formulário
                         </button>
                       </div>
                     </form>
@@ -791,7 +791,7 @@ export function AdminDashboard() {
                         <EmptyState
                           icon={FolderOpen}
                           title="Sem projetos cadastrados"
-                          description="Quando voce salvar um projeto, ele passa a aparecer nesta lista."
+                          description="Quando você salvar um projeto, ele passa a aparecer nesta lista."
                         />
                       ) : (
                         projects.map((project) => (
@@ -822,7 +822,7 @@ export function AdminDashboard() {
                     icon={CheckCircle2}
                     label="Publicados"
                     value={approvedFeedbacks}
-                    note="visiveis no site"
+                    note="visíveis no site"
                   />
                   <OverviewMetric
                     icon={Clock3}
@@ -835,7 +835,7 @@ export function AdminDashboard() {
                 <div className="grid gap-6 xl:grid-cols-[minmax(0,0.98fr)_minmax(360px,1.02fr)]">
                   <SurfaceCard
                     title={feedbackForm.id ? "Editar feedback" : "Novo feedback"}
-                    subtitle="Depoimentos com contexto e controle de exibicao."
+                    subtitle="Depoimentos com contexto e controle de exibição."
                   >
                     <form className="grid gap-6" onSubmit={saveFeedback}>
                       <div className="grid gap-4 md:grid-cols-2">
@@ -866,7 +866,7 @@ export function AdminDashboard() {
                         <EmptyState
                           icon={MessageSquare}
                           title="Sem feedbacks cadastrados"
-                          description="Adicione os primeiros depoimentos para reforcar a credibilidade do portfolio."
+                          description="Adicione os primeiros depoimentos para reforçar a credibilidade do portfólio."
                         />
                       ) : (
                         feedbacks.map((feedback) => (
@@ -907,13 +907,13 @@ export function AdminDashboard() {
                   />
                 </div>
 
-                <SurfaceCard title="Inbox do site" subtitle="Mensagens recebidas pelo formulario de contato.">
+                <SurfaceCard title="Inbox do site" subtitle="Mensagens recebidas pelo formulário de contato.">
                   <div className="grid gap-3">
                     {contacts.length === 0 ? (
                       <EmptyState
                         icon={Inbox}
                         title="Sem mensagens salvas"
-                        description="Quando alguem entrar em contato pelo site, a mensagem aparece aqui."
+                        description="Quando alguém entrar em contato pelo site, a mensagem aparece aqui."
                       />
                     ) : (
                       contacts.map((contact) => (

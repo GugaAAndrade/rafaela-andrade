@@ -12,7 +12,7 @@ export async function GET() {
 
 export async function POST(request: Request) {
   if (!(await hasAdminAccess())) {
-    return NextResponse.json({ error: "Nao autorizado." }, { status: 401 })
+    return NextResponse.json({ error: "Não autorizado." }, { status: 401 })
   }
 
   try {

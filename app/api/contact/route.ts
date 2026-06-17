@@ -4,7 +4,7 @@ import { createContact, listContacts } from "@/lib/data"
 
 export async function GET() {
   if (!(await hasAdminAccess())) {
-    return NextResponse.json({ error: "Nao autorizado." }, { status: 401 })
+    return NextResponse.json({ error: "Não autorizado." }, { status: 401 })
   }
 
   try {

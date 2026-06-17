@@ -4,7 +4,7 @@ import { uploadProjectImage } from "@/lib/cloudinary"
 
 export async function POST(request: Request) {
   if (!(await hasAdminAccess())) {
-    return NextResponse.json({ error: "Nao autorizado." }, { status: 401 })
+    return NextResponse.json({ error: "Não autorizado." }, { status: 401 })
   }
 
   const formData = await request.formData()
@@ -26,7 +26,7 @@ export async function POST(request: Request) {
       secureUrl: upload.secureUrl
     })
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Nao foi possivel enviar a imagem."
+    const message = error instanceof Error ? error.message : "Não foi possível enviar a imagem."
     return NextResponse.json({ error: message }, { status: 500 })
   }
 }

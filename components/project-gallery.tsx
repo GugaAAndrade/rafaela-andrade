@@ -67,7 +67,7 @@ export function ProjectGallery({
                     className={cn(buttonGhostClass, "border-white/35 bg-white/12 px-3 text-white backdrop-blur-sm hover:bg-white/18")}
                     type="button"
                     onClick={showNext}
-                    aria-label="Proxima imagem"
+                    aria-label="Próxima imagem"
                   >
                     <ArrowRight size={16} />
                   </button>

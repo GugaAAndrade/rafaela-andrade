@@ -25,10 +25,10 @@ export function ContactForm() {
 
     if (response.ok) {
       form.reset()
-      setStatus("Mensagem enviada. Retornaremos com os proximos passos.")
+      setStatus("Mensagem enviada. Retornaremos com os próximos passos.")
     } else {
       const data = await response.json().catch(() => null)
-      setStatus(data?.error || "Nao foi possivel enviar agora.")
+      setStatus(data?.error || "Não foi possível enviar agora.")
     }
 
     setLoading(false)

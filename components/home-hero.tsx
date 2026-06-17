@@ -60,7 +60,7 @@ export function HomeHero({ projects }: HomeHeroProps) {
               </button>
               <button
                 type="button"
-                aria-label="Proximo projeto"
+                aria-label="Próximo projeto"
                 onClick={() => setActiveIndex((current) => (current + 1) % slides.length)}
                 className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/40 bg-black/20 text-white backdrop-blur transition hover:bg-black/35"
               >
@@ -74,15 +74,15 @@ export function HomeHero({ projects }: HomeHeroProps) {
       <div className="flex min-h-0 flex-col justify-center bg-paper px-4 py-7 sm:px-5 sm:py-8 md:px-6 md:py-12 xl:px-18 lg:min-h-screen lg:py-14">
         <p className={eyebrowClass}>Arquitetura de Interiores</p>
         <h1 className="max-w-[11ch] text-[clamp(2.1rem,10vw,5rem)] leading-[0.96] font-light sm:max-w-[13ch]">
-          Espacos pensados para a vida acontecer com calma.
+          Espaços pensados para a vida acontecer com calma.
         </h1>
         <p className={`${textMutedClass} max-w-[32rem]`}>
           Rafaela Andrade cria projetos residenciais, comerciais e interiores com escuta,
-          proporcao e uma leitura cuidadosa de materiais, luz e rotina.
+          proporção e uma leitura cuidadosa de materiais, luz e rotina.
         </p>
         <div className="mt-5 grid w-full gap-3 sm:flex sm:flex-row sm:flex-wrap sm:items-center">
           <Link href="/projetos" className={`${buttonPrimaryClass} w-full sm:w-auto`}>
-            ver portfolio <ArrowRight size={17} />
+            ver portfólio <ArrowRight size={17} />
           </Link>
           <Link href="/contato" className={textLinkClass}>
             iniciar conversa

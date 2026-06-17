@@ -49,7 +49,7 @@ export async function uploadProjectImage(file: File) {
         }
 
         if (!uploadResult?.secure_url || !uploadResult.url) {
-          reject(new Error("Cloudinary nao retornou a URL da imagem."))
+          reject(new Error("Cloudinary não retornou a URL da imagem."))
           return
         }
 

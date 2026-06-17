@@ -10,7 +10,7 @@ export async function POST(request: Request) {
   }
 
   if (password !== expectedPassword) {
-    return NextResponse.json({ error: "Senha invalida." }, { status: 401 })
+    return NextResponse.json({ error: "Senha inválida." }, { status: 401 })
   }
 
   await setAdminCookie(createSessionToken())
