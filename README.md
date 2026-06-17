@@ -10,15 +10,15 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Sem `.env.local`, o admin local aceita `admin123`. Em producao, defina `ADMIN_PASSWORD`, `ADMIN_SECRET` e as credenciais do Cloudinary.
+Sem `.env.local`, o admin local aceita `admin123`. Em producao, defina `ADMIN_PASSWORD`, `ADMIN_SECRET`, as credenciais do Cloudinary e `DATABASE_URL`.
 
-## Como os dados funcionam sem Supabase
+## Como os dados funcionam
 
-O conteudo fica em `data/site-data.json`.
+Com `DATABASE_URL` configurado, projetos, feedbacks e contatos passam a ser salvos no Neon Postgres.
 
-O admin em `/admin` salva projetos, feedbacks e contatos nesse arquivo quando o site esta rodando localmente. Depois disso, basta commitar as alteracoes e a Vercel publica o conteudo atualizado.
+Sem `DATABASE_URL`, o projeto cai no fallback local em `data/site-data.json`.
 
-Na Vercel, sem banco externo, alteracoes feitas pelo admin online nao ficam salvas de forma permanente. Isso e uma limitacao normal de hospedagem serverless gratuita.
+Na primeira execucao com banco vazio, o app importa automaticamente os dados atuais do JSON local para o Neon.
 
 ## Fotos dos projetos
 
@@ -39,6 +39,7 @@ Os campos de URL continuam disponiveis como fallback manual.
 - **Vercel** para hospedar o site.
 - **GitHub** para versionar o conteudo e acionar deploy automatico.
 - **Cloudinary Free** para armazenar e servir as imagens dos projetos.
+- **Neon** para persistir projetos, feedbacks e contatos do admin.
 
 ## Fluxo recomendado
 
